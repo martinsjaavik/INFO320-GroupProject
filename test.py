@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import messagebox
 from tkinter import ttk
+import tkintermapview
 
 
 """
@@ -69,7 +70,7 @@ class LoginPage(tk.Tk):
             username = entry_user.get()
             password = entry_pw.get()
             # if your want to run the script as it is set validation = True
-            validation = validate(username, password)
+            validation = True
             if validation:
                 tk.messagebox.showinfo("Login Successful",
                                        "Welcome {}".format(username))
@@ -179,8 +180,7 @@ class MenuBar(tk.Menu):
         menu_operations.add_command(label="Page Two", command=lambda: parent.show_frame(PageTwo))
         menu_positions = tk.Menu(menu_operations, tearoff=0)
         menu_operations.add_cascade(label="Menu5", menu=menu_positions)
-        menu_positions.add_command(label="Page Three", command=lambda: parent.show_frame(PageThree))
-        menu_positions.add_command(label="Page Four", command=lambda: parent.show_frame(PageFour))
+
 
         menu_help = tk.Menu(self, tearoff=0)
         self.add_cascade(label="Menu6", menu=menu_help)
@@ -200,7 +200,7 @@ class MyApp(tk.Tk):
         # self.resizable(0, 0) prevents the app from being resized
         # self.geometry("1024x600") fixes the applications size
         self.frames = {}
-        pages = (Some_Widgets, PageOne, PageTwo, PageThree, PageFour)
+        pages = (Some_Widgets, PageOne, PageTwo)
         for F in pages:
             frame = F(main_frame, self)
             self.frames[F] = frame
@@ -309,24 +309,9 @@ class PageOne(GUI):
     def __init__(self, parent, controller):
         GUI.__init__(self, parent)
 
-        label1 = tk.Label(self.main_frame, font=("Verdana", 20), text="Page One")
-        label1.pack(side="top")
+        map_widget = tkintermapview.TkinterMapView(self, width=800, height=600, corner_radius=0)
+        map_widget.place(relx=0.5, rely=0.5, anchor=tk.CENTER)
 
-
-class PageThree(GUI):
-    def __init__(self, parent, controller):
-        GUI.__init__(self, parent)
-
-        label1 = tk.Label(self.main_frame, font=("Verdana", 20), text="Page Three")
-        label1.pack(side="top")
-
-
-class PageFour(GUI):
-    def __init__(self, parent, controller):
-        GUI.__init__(self, parent)
-
-        label1 = tk.Label(self.main_frame, font=("Verdana", 20), text="Page Four")
-        label1.pack(side="top")
 
 
 class PageTwo(GUI):
