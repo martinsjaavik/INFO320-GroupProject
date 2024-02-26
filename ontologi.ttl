@@ -1,87 +1,214 @@
-@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix owl: <http://www.w3.org/2002/07/owl#> .
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix : <http://example.org/ski#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.w3.org/2002/07/owl#> .
 
-:Resort rdf:type owl:Class ;
-    rdfs:subClassOf owl:Thing .
+[ rdf:type owl:Ontology
+ ] .
 
-:SkiResort rdf:type owl:Class ;
-    rdfs:subClassOf :Resort .
+#################################################################
+#    Object Properties
+#################################################################
 
+###  http://example.org/ski#hasBeginnerSlope
+:hasBeginnerSlope rdf:type owl:ObjectProperty ;
+                  rdfs:domain :Resort .
+
+
+###  http://example.org/ski#hasChairLifts
+:hasChairLifts rdf:type owl:ObjectProperty ;
+               rdfs:domain :Resort .
+
+
+###  http://example.org/ski#hasCountry
+:hasCountry rdf:type owl:ObjectProperty ;
+            rdfs:domain :Resort .
+
+
+###  http://example.org/ski#hasDayPassPriceAdult
+:hasDayPassPriceAdult rdf:type owl:ObjectProperty ;
+                      rdfs:domain :Resort .
+
+
+###  http://example.org/ski#hasDifficultSlope
+:hasDifficultSlope rdf:type owl:ObjectProperty ;
+                   rdfs:domain :Resort .
+
+
+###  http://example.org/ski#hasGondolaLifts
+:hasGondolaLifts rdf:type owl:ObjectProperty ;
+                 rdfs:domain :Resort .
+
+
+###  http://example.org/ski#hasHighestPoint
+:hasHighestPoint rdf:type owl:ObjectProperty ;
+                 rdfs:domain :Resort .
+
+
+###  http://example.org/ski#hasIntermediateSlope
+:hasIntermediateSlope rdf:type owl:ObjectProperty ;
+                      rdfs:domain :Resort .
+
+
+###  http://example.org/ski#hasLiftCapacity
+:hasLiftCapacity rdf:type owl:ObjectProperty ;
+                 rdfs:domain :Resort .
+
+
+###  http://example.org/ski#hasLowestPoint
+:hasLowestPoint rdf:type owl:ObjectProperty ;
+                rdfs:domain :Resort .
+
+
+###  http://example.org/ski#hasNightSki
+:hasNightSki rdf:type owl:ObjectProperty ;
+             rdfs:domain :Resort .
+
+
+###  http://example.org/ski#hasResortName
+:hasResortName rdf:type owl:ObjectProperty ;
+               rdfs:domain :Resort .
+
+
+###  http://example.org/ski#hasSnowCannons
+:hasSnowCannons rdf:type owl:ObjectProperty ;
+                rdfs:domain :Resort .
+
+
+###  http://example.org/ski#hasSnowparks
+:hasSnowparks rdf:type owl:ObjectProperty ;
+              rdfs:domain :Resort .
+
+
+###  http://example.org/ski#hasSurfaceLifts
+:hasSurfaceLifts rdf:type owl:ObjectProperty ;
+                 rdfs:domain :Resort .
+
+
+###  http://example.org/ski#hasTotalLifts
+:hasTotalLifts rdf:type owl:ObjectProperty ;
+               rdfs:domain :Resort .
+
+
+###  http://example.org/ski#hasTotalSlope
+:hasTotalSlope rdf:type owl:ObjectProperty ;
+               rdfs:domain :Resort .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://example.org/ski#hasBeginnerSlope
+:hasBeginnerSlope rdf:type owl:DatatypeProperty ;
+                  rdfs:range xsd:integer .
+
+
+###  http://example.org/ski#hasChairLifts
+:hasChairLifts rdf:type owl:DatatypeProperty ;
+               rdfs:range xsd:integer .
+
+
+###  http://example.org/ski#hasCountry
+:hasCountry rdf:type owl:DatatypeProperty ;
+            rdfs:range xsd:string .
+
+
+###  http://example.org/ski#hasDayPassPriceAdult
+:hasDayPassPriceAdult rdf:type owl:DatatypeProperty ;
+                      rdfs:range xsd:decimal .
+
+
+###  http://example.org/ski#hasDifficultSlope
+:hasDifficultSlope rdf:type owl:DatatypeProperty ;
+                   rdfs:range xsd:integer .
+
+
+###  http://example.org/ski#hasGondolaLifts
+:hasGondolaLifts rdf:type owl:DatatypeProperty ;
+                 rdfs:range xsd:integer .
+
+
+###  http://example.org/ski#hasHighestPoint
+:hasHighestPoint rdf:type owl:DatatypeProperty ;
+                 rdfs:range xsd:integer .
+
+
+###  http://example.org/ski#hasIntermediateSlope
+:hasIntermediateSlope rdf:type owl:DatatypeProperty ;
+                      rdfs:range xsd:integer .
+
+
+###  http://example.org/ski#hasLiftCapacity
+:hasLiftCapacity rdf:type owl:DatatypeProperty ;
+                 rdfs:range xsd:integer .
+
+
+###  http://example.org/ski#hasLowestPoint
+:hasLowestPoint rdf:type owl:DatatypeProperty ;
+                rdfs:range xsd:integer .
+
+
+###  http://example.org/ski#hasNightSki
+:hasNightSki rdf:type owl:DatatypeProperty ;
+             rdfs:range xsd:boolean .
+
+
+###  http://example.org/ski#hasResortName
+:hasResortName rdf:type owl:DatatypeProperty ;
+               rdfs:range xsd:string .
+
+
+###  http://example.org/ski#hasSnowCannons
+:hasSnowCannons rdf:type owl:DatatypeProperty ;
+                rdfs:range xsd:integer .
+
+
+###  http://example.org/ski#hasSnowparks
+:hasSnowparks rdf:type owl:DatatypeProperty ;
+              rdfs:range xsd:boolean .
+
+
+###  http://example.org/ski#hasSurfaceLifts
+:hasSurfaceLifts rdf:type owl:DatatypeProperty ;
+                 rdfs:range xsd:integer .
+
+
+###  http://example.org/ski#hasTotalLifts
+:hasTotalLifts rdf:type owl:DatatypeProperty ;
+               rdfs:range xsd:integer .
+
+
+###  http://example.org/ski#hasTotalSlope
+:hasTotalSlope rdf:type owl:DatatypeProperty ;
+               rdfs:range xsd:integer .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://example.org/ski#AlpineSkiResort
 :AlpineSkiResort rdf:type owl:Class ;
-    rdfs:subClassOf :SkiResort .
+                 rdfs:subClassOf :SkiResort .
 
+
+###  http://example.org/ski#NordicSkiResort
 :NordicSkiResort rdf:type owl:Class ;
-    rdfs:subClassOf :SkiResort .
+                 rdfs:subClassOf :SkiResort .
 
-# Properties
-:hasResortName a owl:ObjectProperty ;
-    rdfs:domain :Resort ;
-    rdfs:range xsd:string .
 
-:hasCountry a owl:ObjectProperty ;
-    rdfs:domain :Resort ;
-    rdfs:range xsd:string .
+###  http://example.org/ski#Resort
+:Resort rdf:type owl:Class ;
+        rdfs:subClassOf owl:Thing .
 
-:hasHighestPoint a owl:ObjectProperty ;
-    rdfs:domain :Resort ;
-    rdfs:range xsd:integer .
 
-:hasLowestPoint a owl:ObjectProperty ;
-    rdfs:domain :Resort ;
-    rdfs:range xsd:integer .
+###  http://example.org/ski#SkiResort
+:SkiResort rdf:type owl:Class ;
+           rdfs:subClassOf :Resort .
 
-:hasDayPassPriceAdult a owl:ObjectProperty ;
-    rdfs:domain :Resort ;
-    rdfs:range xsd:decimal .
 
-:hasBeginnerSlope a owl:ObjectProperty ;
-    rdfs:domain :Resort ;
-    rdfs:range xsd:integer .
-
-:hasIntermediateSlope a owl:ObjectProperty ;
-    rdfs:domain :Resort ;
-    rdfs:range xsd:integer .
-
-:hasDifficultSlope a owl:ObjectProperty ;
-    rdfs:domain :Resort ;
-    rdfs:range xsd:integer .
-
-:hasTotalSlope a owl:ObjectProperty ;
-    rdfs:domain :Resort ;
-    rdfs:range xsd:integer .
-
-:hasSnowparks a owl:ObjectProperty ;
-    rdfs:domain :Resort ;
-    rdfs:range xsd:boolean .
-
-:hasNightSki a owl:ObjectProperty ;
-    rdfs:domain :Resort ;
-    rdfs:range xsd:boolean .
-
-:hasSurfaceLifts a owl:ObjectProperty ;
-    rdfs:domain :Resort ;
-    rdfs:range xsd:integer .
-
-:hasChairLifts a owl:ObjectProperty ;
-    rdfs:domain :Resort ;
-    rdfs:range xsd:integer .
-
-:hasGondolaLifts a owl:ObjectProperty ;
-    rdfs:domain :Resort ;
-    rdfs:range xsd:integer .
-
-:hasTotalLifts a owl:ObjectProperty ;
-    rdfs:domain :Resort ;
-    rdfs:range xsd:integer .
-
-:hasLiftCapacity a owl:ObjectProperty ;
-    rdfs:domain :Resort ;
-    rdfs:range xsd:integer .
-
-:hasSnowCannons a owl:ObjectProperty ;
-    rdfs:domain :Resort ;
-    rdfs:range xsd:integer .
-    
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi
