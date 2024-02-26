@@ -1,0 +1,87 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix : <http://example.org/ski#> .
+
+:Resort rdf:type owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+:SkiResort rdf:type owl:Class ;
+    rdfs:subClassOf :Resort .
+
+:AlpineSkiResort rdf:type owl:Class ;
+    rdfs:subClassOf :SkiResort .
+
+:NordicSkiResort rdf:type owl:Class ;
+    rdfs:subClassOf :SkiResort .
+
+# Properties
+:hasResortName a owl:ObjectProperty ;
+    rdfs:domain :Resort ;
+    rdfs:range xsd:string .
+
+:hasCountry a owl:ObjectProperty ;
+    rdfs:domain :Resort ;
+    rdfs:range xsd:string .
+
+:hasHighestPoint a owl:ObjectProperty ;
+    rdfs:domain :Resort ;
+    rdfs:range xsd:integer .
+
+:hasLowestPoint a owl:ObjectProperty ;
+    rdfs:domain :Resort ;
+    rdfs:range xsd:integer .
+
+:hasDayPassPriceAdult a owl:ObjectProperty ;
+    rdfs:domain :Resort ;
+    rdfs:range xsd:decimal .
+
+:hasBeginnerSlope a owl:ObjectProperty ;
+    rdfs:domain :Resort ;
+    rdfs:range xsd:integer .
+
+:hasIntermediateSlope a owl:ObjectProperty ;
+    rdfs:domain :Resort ;
+    rdfs:range xsd:integer .
+
+:hasDifficultSlope a owl:ObjectProperty ;
+    rdfs:domain :Resort ;
+    rdfs:range xsd:integer .
+
+:hasTotalSlope a owl:ObjectProperty ;
+    rdfs:domain :Resort ;
+    rdfs:range xsd:integer .
+
+:hasSnowparks a owl:ObjectProperty ;
+    rdfs:domain :Resort ;
+    rdfs:range xsd:boolean .
+
+:hasNightSki a owl:ObjectProperty ;
+    rdfs:domain :Resort ;
+    rdfs:range xsd:boolean .
+
+:hasSurfaceLifts a owl:ObjectProperty ;
+    rdfs:domain :Resort ;
+    rdfs:range xsd:integer .
+
+:hasChairLifts a owl:ObjectProperty ;
+    rdfs:domain :Resort ;
+    rdfs:range xsd:integer .
+
+:hasGondolaLifts a owl:ObjectProperty ;
+    rdfs:domain :Resort ;
+    rdfs:range xsd:integer .
+
+:hasTotalLifts a owl:ObjectProperty ;
+    rdfs:domain :Resort ;
+    rdfs:range xsd:integer .
+
+:hasLiftCapacity a owl:ObjectProperty ;
+    rdfs:domain :Resort ;
+    rdfs:range xsd:integer .
+
+:hasSnowCannons a owl:ObjectProperty ;
+    rdfs:domain :Resort ;
+    rdfs:range xsd:integer .
+    
