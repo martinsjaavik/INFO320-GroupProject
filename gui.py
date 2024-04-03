@@ -57,21 +57,25 @@ class App(customtkinter.CTk):
         self.button_3.grid(pady=(10, 0), padx=(50, 50), row=2, column=0)
 
 
-        self.button_6 = customtkinter.CTkButton(master=self.frame_left,
-                                                text="Apply query")
-        self.button_6.grid(pady=(10, 0), padx=(50, 50), row=3, column=0)
+        self.button_4 = customtkinter.CTkOptionMenu(self.frame_left, values=["None","Europe", "Africa","Asia"],
+                                                                       command=self.change_map)
+        self.button_4.grid(row=3, column=0, padx=(20, 20), pady=(10, 0))
+        self.button_4.set("Continents")
+
+        self.button_5 = customtkinter.CTkOptionMenu(self.frame_left, values=["None", "GDP", "Obesity"],
+                                                                       command=self.change_map)
+        self.button_5.grid(row=4, column=0, padx=(20, 20), pady=(10, 0))
+        self.button_5.set("Type")
+
+        self.button_6 = customtkinter.CTkOptionMenu(self.frame_left, values=["5", "10", "15", "20"],
+                                                                       command=self.change_map)
+        self.button_6.grid(row=5, column=0, padx=(20, 20), pady=(10, 0))
+        self.button_6.set("Top #n")
 
         self.button_7 = customtkinter.CTkButton(master=self.frame_left,
-                                                text="Clear Markers")
-        self.button_7.grid(pady=(10, 0), padx=(50, 50), row=4, column=0)
-
-        self.map_label = customtkinter.CTkLabel(self.frame_left, text="Countries:", anchor="w")
-        self.map_label.grid(row=5, column=0, padx=(20, 20), pady=(10, 0))
-
-        self.button_8 = customtkinter.CTkOptionMenu(self.frame_left, values=["Berlin", "Oslo","Paris"],
-                                                                       command=self.change_map)
-        self.button_8.grid(row=6, column=0, padx=(20, 20), pady=(10, 0))
-        self.button_8.set("Insert")
+                                                text="Apply query")
+        self.button_7.grid(pady=(10, 0), padx=(50, 50), row=6, column=0)
+        
 
         ## right grid
 
@@ -89,11 +93,11 @@ class App(customtkinter.CTk):
         self.entry.grid(row=0, column=0, sticky="we", padx=(12, 0), pady=12)
         self.entry.bind("<Return>", self.search_event)
 
-        self.button_5 = customtkinter.CTkButton(master=self.frame_right,
+        self.button_10 = customtkinter.CTkButton(master=self.frame_right,
                                                 text="Search",
                                                 width=90,
                                                 command=self.search_event)
-        self.button_5.grid(row=0, column=1, sticky="w", padx=(12, 0), pady=12)
+        self.button_10.grid(row=0, column=1, sticky="w", padx=(12, 0), pady=12)
 
         self.map_widget.set_address("Bergen")
 
