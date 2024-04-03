@@ -31,8 +31,24 @@ mappingId	country-data
 target		ex:countrydata/{COUNTRYTERRITORY} a ex:Country ; ex:belongsToContinent ex:countrydata/{CONTINENT } ; ex:hasCapital ex:countrydata/{CAPITAL } ; ex:Code ex:countrydata/{CCA3} . 
 source		SELECT CCA3, countryterritory ,capital, continent from countrydata
 
-mappingId	capital
+mappingId	country-capital
 target		ex:countrydata/{CAPITAL} a ex:CapitalCity ; ex:locatedIn ex:countrydata/{countryterritory } . 
 source		SELECT countryterritory, capital from countrydata
+
+mappingId	country-region
+target		ex:happiness/{country} ex:belongsToRegion ex:happiness/{region} . 
+source		SELECT country, region FROM happiness
+
+mappingId	country-happiness
+target		ex:happiness/{country} ex:hasHappinessScore ex:happiness/{"Happiness Score"} . 
+source		select country, "Happiness Score" from HAPPINESS
+
+mappingId	region-data
+target		ex:happiness/{Region} a ex:Region ; ex:containsCountry ex:happiness/{Country} . 
+source		select country, region from happiness
+
+mappingId	country-government
+target		ex:democracy/{country} ex:hasGovernment ex:democracy/{type} . 
+source		select * from democracy
 ]]
 
