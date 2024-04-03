@@ -3,6 +3,11 @@ from tkintermapview import TkinterMapView
 from tkinter import ttk
 import tkinter as tk
 
+from rdflib import Graph, Namespace, URIRef, BNode, Literal
+from rdflib.namespace import RDF, FOAF, XSD, DC, RDFS
+from rdflib.collection import Collection
+from SPARQLWrapper import SPARQLWrapper, JSON, TURTLE, GET, POST
+
 customtkinter.set_default_color_theme("blue")
 
 
@@ -129,6 +134,7 @@ class App(customtkinter.CTk):
         return None
     
     def example_query_1(self):
+        q = "SELECT * FROM GDP"
         self.new()
     
     def example_query_2(self):
@@ -136,6 +142,14 @@ class App(customtkinter.CTk):
     
     def example_query_3(self):
         return None
+
+    def test(self):
+        g = Graph()
+        g.parse("ontology.ttl")
+        q = "SELECT * FROM GDP"
+        print(list(q))
+
+
 
 
 if __name__ == "__main__":
