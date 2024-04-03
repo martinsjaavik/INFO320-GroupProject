@@ -12,20 +12,20 @@ schema:		http://schema.org/
 
 [MappingDeclaration] @collection [[
 mappingId	country-obesity
-target		ex:obesity/{COUNTRY} a ex:Country ; ex:ObesityRate ex:obesity/{BOTHSEXES} ; ex:MaleObesityRate ex:obesity/{MALE} ; ex:FemaleObesityRate ex:obesity/{FEMALE} . 
+target		ex:obesity/{COUNTRY} ex:ObesityRate ex:obesity/{BOTHSEXES} ; ex:MaleObesityRate ex:obesity/{MALE} ; ex:FemaleObesityRate ex:obesity/{FEMALE} . 
 source		select country, bothsexes, male, female from obesity
 
 mappingId	country-gdp
-target		ex:gdp/{COUNTRY} a ex:Country ; ex:hasGDP ex:gdp/{GDP} . 
+target		ex:gdp/{COUNTRY} ex:hasGDP ex:gdp/{GDP} . 
 source		select country, gdp from gdp
 
 mappingId	country-lifeexpectancy
-target		ex:lifeexpectancy/{COUNTRY} a ex:Country ; ex:hasLifeExpectancy ex:lifeexpectancy/{lifeexpectancy} . 
+target		ex:lifeexpectancy/{COUNTRY} ex:hasLifeExpectancy ex:lifeexpectancy/{lifeexpectancy} . 
 source		SELECT * FROM LIFEEXPECTANCY;
 
 mappingId	continent-data
 target		ex:countrydata/{CONTINENT} a ex:Continent ; ex:hasCountry ex:countrydata/{COUNTRYTERRITORY} . 
-source		SELECT CCA3, countryterritory ,capital, continent from countrydata
+source		SELECT CCA3, countryterritory, capital, continent from countrydata
 
 mappingId	country-data
 target		ex:countrydata/{COUNTRYTERRITORY} a ex:Country ; ex:belongsToContinent ex:countrydata/{CONTINENT } ; ex:hasCapital ex:countrydata/{CAPITAL } ; ex:Code ex:countrydata/{CCA3} . 
