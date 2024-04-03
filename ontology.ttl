@@ -110,7 +110,12 @@ ex:hasLifeExpectancy rdf:type owl:DatatypeProperty ;
 #################################################################
 
 ###  http://example.org/ontology/CapitalCity
-ex:CapitalCity rdf:type owl:Class .
+ex:CapitalCity rdf:type owl:Class ;
+               rdfs:subClassOf ex:City .
+
+
+###  http://example.org/ontology/City
+ex:City rdf:type owl:Class .
 
 
 ###  http://example.org/ontology/Continent

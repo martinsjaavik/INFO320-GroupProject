@@ -33,6 +33,6 @@ source		SELECT CCA3, countryterritory ,capital, continent from countrydata
 
 mappingId	capital
 target		ex:countrydata/{CAPITAL} a ex:CapitalCity ; ex:locatedIn ex:countrydata/{countryterritory } . 
-source		SELECT countryterritory ,capital from countrydata
+source		SELECT countryterritory, capital from countrydata
 ]]
 
