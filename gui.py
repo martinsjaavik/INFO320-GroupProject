@@ -39,23 +39,39 @@ class App(customtkinter.CTk):
         self.frame_right.grid(row=0, column=1, rowspan=1, pady=0, padx=0, sticky="nsew")
 
         ## Left grid
-        self.frame_left.grid_rowconfigure(4, weight=1)
+        self.frame_left.grid_rowconfigure(10, weight=1)
 
+        #Example queries
         self.button_1 = customtkinter.CTkButton(master=self.frame_left,
-                                                text="Set Marker")
+                                                text="Example query #1",
+                                                command=self.example_query_1,
+                                                hover="bla")
         self.button_1.grid(pady=(10, 0), padx=(50, 50), row=0, column=0)
-
         self.button_2 = customtkinter.CTkButton(master=self.frame_left,
-                                                text="Clear Markers")
+                                                text="Example query #2",
+                                                command=self.example_query_2)
         self.button_2.grid(pady=(10, 0), padx=(50, 50), row=1, column=0)
+        self.button_3 = customtkinter.CTkButton(master=self.frame_left,
+                                                text="Example query #3",
+                                                command=self.example_query_3)
+        self.button_3.grid(pady=(10, 0), padx=(50, 50), row=2, column=0)
+
+
+        self.button_6 = customtkinter.CTkButton(master=self.frame_left,
+                                                text="Apply query")
+        self.button_6.grid(pady=(10, 0), padx=(50, 50), row=3, column=0)
+
+        self.button_7 = customtkinter.CTkButton(master=self.frame_left,
+                                                text="Clear Markers")
+        self.button_7.grid(pady=(10, 0), padx=(50, 50), row=4, column=0)
 
         self.map_label = customtkinter.CTkLabel(self.frame_left, text="Countries:", anchor="w")
-        self.map_label.grid(row=2, column=0, padx=(20, 20), pady=(10, 0))
+        self.map_label.grid(row=5, column=0, padx=(20, 20), pady=(10, 0))
 
-        self.button_3 = customtkinter.CTkOptionMenu(self.frame_left, values=["Berlin", "Oslo","Paris"],
+        self.button_8 = customtkinter.CTkOptionMenu(self.frame_left, values=["Berlin", "Oslo","Paris"],
                                                                        command=self.change_map)
-        self.button_3.grid(row=3, column=0, padx=(20, 20), pady=(10, 0))
-        self.button_3.set("Insert")
+        self.button_8.grid(row=6, column=0, padx=(20, 20), pady=(10, 0))
+        self.button_8.set("Insert")
 
         ## right grid
 
@@ -67,7 +83,19 @@ class App(customtkinter.CTk):
 
         self.map_widget = TkinterMapView(self.frame_right, corner_radius=0)
         self.map_widget.grid(row=1, rowspan=1, column=0, columnspan=3, sticky="nswe", padx=(0, 0), pady=(0, 0))
-        self.map_widget.set_address("Berlin")
+
+        self.entry = customtkinter.CTkEntry(master=self.frame_right,
+                                            placeholder_text="type address")
+        self.entry.grid(row=0, column=0, sticky="we", padx=(12, 0), pady=12)
+        self.entry.bind("<Return>", self.search_event)
+
+        self.button_5 = customtkinter.CTkButton(master=self.frame_right,
+                                                text="Search",
+                                                width=90,
+                                                command=self.search_event)
+        self.button_5.grid(row=0, column=1, sticky="w", padx=(12, 0), pady=12)
+
+        self.map_widget.set_address("Bergen")
 
     def start(self):
         self.mainloop()
@@ -75,7 +103,29 @@ class App(customtkinter.CTk):
     def on_closing(self, event=0):
         self.destroy()
     
-    def change_map():
+    def new(self):
+        root = customtkinter.CTk()
+
+        root.title('Tkinter.com - CustomTkinter New Toplevel Window')
+        root.geometry('600x400')
+        new_window = customtkinter.CTkToplevel(root, fg_color="white")
+        new_window.title("This is a new window!")
+        new_window.geometry("600x400")
+        new_window.resizable(False, True) # Width, Height
+
+    def search_event(self, event=None):
+        self.map_widget.set_address(self.entry.get())
+    
+    def change_map(self):
+        return None
+    
+    def example_query_1(self):
+        self.new()
+    
+    def example_query_2(self):
+        return None
+    
+    def example_query_3(self):
         return None
 
 
