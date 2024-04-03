@@ -2,6 +2,7 @@ import customtkinter
 from tkintermapview import TkinterMapView
 from tkinter import ttk
 import tkinter as tk
+from CTkTable import *
 
 from rdflib import Graph, Namespace, URIRef, BNode, Literal
 from rdflib.namespace import RDF, FOAF, XSD, DC, RDFS
@@ -118,14 +119,18 @@ class App(customtkinter.CTk):
         new_window.title("This is a new window!")
         new_window.geometry("600x400")
         new_window.resizable(False, True) # Width, Height
+        new_window.attributes('-topmost', True)
+        
 
-        def close():
-            new_window.destroy()
-            new_window.update()
-
-	    # Close the window
-        new_button = customtkinter.CTkButton(new_window, text="Close Window", command=close)
-        new_button.pack(pady=40)
+        value = [["Africa",2,3,4,5],
+         [1,2,3,4,5],
+         [1,2,3,4,5],
+         [1,2,3,4,5],
+         [1,2,3,4,5]]
+        table = CTkTable(master=new_window, row=5, column=5, values=value)
+        table.pack(expand=True, fill="both", padx=20, pady=20)
+        new_window.update()
+        
 
     def search_event(self, event=None):
         self.map_widget.set_address(self.entry.get())
