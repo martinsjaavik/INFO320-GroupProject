@@ -96,45 +96,6 @@ ex:locatedIn rdf:type owl:ObjectProperty ;
 
 
 #################################################################
-#    Data properties
-#################################################################
-
-###  http://example.org/ontology/Code
-ex:Code rdf:type owl:DatatypeProperty ;
-        rdfs:range xsd:float .
-
-
-###  http://example.org/ontology/FemaleObesityRate
-ex:FemaleObesityRate rdf:type owl:DatatypeProperty ;
-                     rdfs:range xsd:float .
-
-
-###  http://example.org/ontology/MaleObesityRate
-ex:MaleObesityRate rdf:type owl:DatatypeProperty ;
-                   rdfs:range xsd:float .
-
-
-###  http://example.org/ontology/ObesityRate
-ex:ObesityRate rdf:type owl:DatatypeProperty ;
-               rdfs:range xsd:float .
-
-
-###  http://example.org/ontology/hasGDP
-ex:hasGDP rdf:type owl:DatatypeProperty ;
-          rdfs:range xsd:float .
-
-
-###  http://example.org/ontology/hasHappinessScore
-ex:hasHappinessScore rdf:type owl:DatatypeProperty ;
-                     rdfs:range xsd:float .
-
-
-###  http://example.org/ontology/hasLifeExpectancy
-ex:hasLifeExpectancy rdf:type owl:DatatypeProperty ;
-                     rdfs:range xsd:float .
-
-
-#################################################################
 #    Classes
 #################################################################
 

@@ -20,19 +20,19 @@ target		ex:gdp/{COUNTRY} ex:hasGDP ex:gdp/{GDP} .
 source		select country, gdp from gdp
 
 mappingId	country-lifeexpectancy
-target		ex:lifeexpectancy/{COUNTRY} ex:hasLifeExpectancy ex:lifeexpectancy/{lifeexpectancy} . 
+target		ex:lifeexpectancy/{COUNTRY} ex:hasLifeExpectancy ex:lifeexpectancy/{"LIFEEXPECTANCY"} . 
 source		SELECT * FROM LIFEEXPECTANCY;
 
 mappingId	continent-data
 target		ex:countrydata/{CONTINENT} a ex:Continent ; ex:hasCountry ex:countrydata/{COUNTRYTERRITORY} . 
-source		SELECT CCA3, countryterritory, capital, continent from countrydata
+source		SELECT CCA3, countryterritory, capital, continent FROM countrydata;
 
 mappingId	country-data
-target		ex:countrydata/{COUNTRYTERRITORY} a ex:Country ; ex:belongsToContinent ex:countrydata/{CONTINENT } ; ex:hasCapital ex:countrydata/{CAPITAL } ; ex:Code ex:countrydata/{CCA3} . 
-source		SELECT CCA3, countryterritory ,capital, continent from countrydata
+target		ex:countrydata/{COUNTRYTERRITORY} a ex:Country ; ex:belongsToContinent ex:countrydata/{CONTINENT} ; ex:hasCapital ex:countrydata/{CAPITAL} ; ex:Code ex:countrydata/{CCA3} . 
+source		SELECT CCA3, countryterritory, capital, continent FROM countrydata;
 
 mappingId	country-capital
-target		ex:countrydata/{CAPITAL} a ex:CapitalCity ; ex:locatedIn ex:countrydata/{countryterritory } . 
+target		ex:countrydata/{CAPITAL} a ex:CapitalCity ; ex:locatedIn ex:countrydata/{countryterritory} . 
 source		SELECT countryterritory, capital from countrydata
 
 mappingId	country-region
