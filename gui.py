@@ -108,14 +108,19 @@ class App(customtkinter.CTk):
         self.destroy()
     
     def new(self):
-        root = customtkinter.CTk()
 
-        root.title('Tkinter.com - CustomTkinter New Toplevel Window')
-        root.geometry('600x400')
-        new_window = customtkinter.CTkToplevel(root, fg_color="white")
+        new_window = customtkinter.CTkToplevel(fg_color="white")
         new_window.title("This is a new window!")
         new_window.geometry("600x400")
         new_window.resizable(False, True) # Width, Height
+
+        def close():
+            new_window.destroy()
+            new_window.update()
+
+	    # Close the window
+        new_button = customtkinter.CTkButton(new_window, text="Close Window", command=close)
+        new_button.pack(pady=40)
 
     def search_event(self, event=None):
         self.map_widget.set_address(self.entry.get())
