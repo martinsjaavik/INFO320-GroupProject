@@ -79,7 +79,8 @@ class App(customtkinter.CTk):
         self.button_6.set("Top #n")
 
         self.button_7 = customtkinter.CTkButton(master=self.frame_left,
-                                                text="Apply query")
+                                                text="Apply query",
+                                                command=self.apply_query)
         self.button_7.grid(pady=(10, 0), padx=(50, 50), row=6, column=0)
         
 
@@ -148,13 +149,22 @@ class App(customtkinter.CTk):
     def example_query_3(self):
         return None
 
+    def apply_query(self, continent, type, number):
+        q = f"""SELECT DISTINCT ?country ?type WHERE {{
+        ?country a ex:country,
+        ?type: :{type} ?type.
+
+        }}
+        ORDER BY DESC(?type)
+        LIMIT {number}
+        """
+        return None
+
     def test(self):
         g = Graph()
         g.parse("ontology.ttl")
         q = "SELECT * FROM GDP"
         print(list(q))
-
-
 
 
 if __name__ == "__main__":
