@@ -1,14 +1,26 @@
-from rdflib import Graph, Namespace, URIRef, BNode, Literal
+from rdflib import Graph
+from rdflib.plugins.sparql import prepareQuery
 
+# Load your ontology file into a RDFLib Graph
+g = Graph()
+g.parse("ontology.ttl", format="ttl")  # Replace with the actual path to your ontology file and format
 
-def test():
-        g = Graph()
-        g.parse("ontology.ttl")
-        q = g.query("""
-SELECT DISTINCT ?s ?p ?o WHERE {
-?s ?p ?o .
-}
+# Define your SPARQL query
+query = prepareQuery(
+    """
+    SELECT ?subject ?predicate ?object
+    WHERE {
+        ?subject ?predicate ?object
+    }
+    """,
+    initNs={})  # Adjust your query as per your ontology structure
 
-""")
-        print(list(q))
-test()
+# Execute the SPARQL query
+results = g.query(query)
+
+# Process the results
+for row in results:
+    print(row)
+
+# Close the graph
+g.close()
