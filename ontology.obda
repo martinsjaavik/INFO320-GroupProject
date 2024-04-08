@@ -1,4 +1,4 @@
-ontology.obda ontology.properties[PrefixDeclaration]
+[PrefixDeclaration]
 ex:		http://example.org/ontology/
 geo:		http://www.w3.org/2003/01/geo/wgs84_pos#
 owl:		http://www.w3.org/2002/07/owl#
@@ -12,43 +12,43 @@ schema:		http://schema.org/
 
 [MappingDeclaration] @collection [[
 mappingId	country-obesity
-target		ex:obesity/{COUNTRY} ex:ObesityRate ex:obesity/{BOTHSEXES} ; ex:MaleObesityRate ex:obesity/{MALE} ; ex:FemaleObesityRate ex:obesity/{FEMALE} . 
+target		ex:{COUNTRY} ex:ObesityRate ex:{BOTHSEXES} ; ex:MaleObesityRate ex:{MALE} ; ex:FemaleObesityRate ex:{FEMALE} . 
 source		select country, bothsexes, male, female from obesity
 
 mappingId	country-gdp
-target		ex:gdp/{COUNTRY} ex:hasGDP ex:gdp/{GDP} . 
+target		ex:{COUNTRY} ex:hasGDP ex:{GDP} . 
 source		select country, gdp from gdp
 
 mappingId	country-lifeexpectancy
-target		ex:lifeexpectancy/{COUNTRY} ex:hasLifeExpectancy ex:lifeexpectancy/{"Life expectancy"} . 
+target		ex:{COUNTRY} ex:hasLifeExpectancy ex:{"Life expectancy"} . 
 source		SELECT * FROM LIFEEXPECTANCY;
 
 mappingId	continent-data
-target		ex:countrydata/{CONTINENT} a ex:Continent ; ex:hasCountry ex:countrydata/{COUNTRYTERRITORY} . 
+target		ex:{CONTINENT} a ex:Continent ; ex:hasCountry ex:{COUNTRYTERRITORY} . 
 source		SELECT CCA3, countryterritory, capital, continent FROM countrydata;
 
 mappingId	country-data
-target		ex:countrydata/{COUNTRYTERRITORY} a ex:Country ; ex:belongsToContinent ex:countrydata/{CONTINENT} ; ex:hasCapital ex:countrydata/{CAPITAL} ; ex:Code ex:countrydata/{CCA3} . 
+target		ex:{COUNTRYTERRITORY} a ex:Country ; ex:belongsToContinent ex:{CONTINENT} ; ex:hasCapital ex:{CAPITAL} ; ex:Code ex:{CCA3} . 
 source		SELECT CCA3, countryterritory, capital, continent FROM countrydata;
 
 mappingId	country-capital
-target		ex:countrydata/{CAPITAL} a ex:CapitalCity ; ex:locatedIn ex:countrydata/{countryterritory} . 
+target		ex:{CAPITAL} a ex:CapitalCity ; ex:locatedIn ex:{countryterritory} . 
 source		SELECT countryterritory, capital from countrydata
 
 mappingId	country-region
-target		ex:happiness/{country} ex:belongsToRegion ex:happiness/{region} . 
+target		ex:{country} ex:belongsToRegion ex:{region} . 
 source		SELECT country, region FROM happiness
 
 mappingId	country-happiness
-target		ex:happiness/{country} ex:hasHappinessScore ex:happiness/{"Happiness Score"} . 
+target		ex:{country} ex:hasHappinessScore ex:{"Happiness Score"} . 
 source		select country, "Happiness Score" from HAPPINESS
 
 mappingId	region-data
-target		ex:happiness/{Region} a ex:Region ; ex:containsCountry ex:happiness/{Country} . 
+target		ex:{Region} a ex:Region ; ex:containsCountry ex:{Country} . 
 source		select country, region from happiness
 
 mappingId	country-government
-target		ex:democracy/{country} ex:hasGovernment ex:democracy/{type} . 
+target		ex:{country} ex:hasGovernment ex:{type} . 
 source		select * from democracy
 ]]
 
