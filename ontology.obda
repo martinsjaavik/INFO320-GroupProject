@@ -20,7 +20,7 @@ target		ex:gdp/{COUNTRY} ex:hasGDP ex:gdp/{GDP} .
 source		select country, gdp from gdp
 
 mappingId	country-lifeexpectancy
-target		ex:lifeexpectancy/{COUNTRY} ex:hasLifeExpectancy ex:lifeexpectancy/{"LIFEEXPECTANCY"} . 
+target		ex:lifeexpectancy/{COUNTRY} ex:hasLifeExpectancy ex:lifeexpectancy/{"Life expectancy"} . 
 source		SELECT * FROM LIFEEXPECTANCY;
 
 mappingId	continent-data
