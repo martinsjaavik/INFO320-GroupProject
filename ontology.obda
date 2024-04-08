@@ -1,4 +1,4 @@
-[PrefixDeclaration]
+ontology.obda ontology.properties[PrefixDeclaration]
 ex:		http://example.org/ontology/
 geo:		http://www.w3.org/2003/01/geo/wgs84_pos#
 owl:		http://www.w3.org/2002/07/owl#
