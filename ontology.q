@@ -12,3 +12,11 @@ SELECT ?country ?o WHERE {
     }
 ORDER BY DESC(?o)
 LIMIT 50
+
+[QueryItem="Has Capital"]
+PREFIX ex: <http://example.org/ontology/>
+SELECT ?country ?capital WHERE {
+        ?country ex:hasCapital ?capital.
+    }
+ORDER BY ASC(?country)
+LIMIT 50
