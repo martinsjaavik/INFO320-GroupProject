@@ -151,8 +151,9 @@ class App(customtkinter.CTk):
 
     def apply_query(self, continent, type, number):
         q = f"""SELECT DISTINCT ?country ?type WHERE {{
-        ?country a ex:country,
-        ?type: :{type} ?type.
+        ?country a ex:country;
+            ex:{type} ?type;
+            ex:contient {continent}.
 
         }}
         ORDER BY DESC(?type)
