@@ -1,3 +1,5 @@
+How to run: copy the right command, start a terminal in this folder (endpoint) and run. http://localhost:8080
+
 
 MAC OSX
 docker run --rm \
