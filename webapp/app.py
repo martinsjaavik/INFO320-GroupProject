@@ -55,7 +55,7 @@ def build_table(field_names, data):
             else:
                 display_value = value 
 
-            table_html += '<td>{}</td>'.format(display_value)
+            table_html += '<td onclick="showPrompt()">{}</td>'.format(display_value)
         table_html += '</tr>'
     
     table_html += '</table>'

@@ -184,5 +184,20 @@ LIMIT 10
         {{ response_table | safe }}
     {% endif %}
     </div>
+
+    <script>
+        // Function to show a prompt when button is clicked
+        function showPrompt() {
+            // Use the prompt() function to display a dialog with a message and input field
+            var userInput = prompt("Please enter something:", "Default value");
+            
+            // Check if the user entered something or clicked Cancel
+            if (userInput !== null) {
+                alert("You entered: " + userInput);
+            } else {
+                alert("You canceled the prompt.");
+            }
+        }
+    </script>
 </body>
 </html>
