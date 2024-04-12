@@ -12,11 +12,4 @@ docker run --rm \
            ontop/ontop
 
 WINDOWS
-docker run --rm ^
-           -v %CD%/input:/opt/ontop/input ^
-           -v %CD%/jdbc:/opt/ontop/jdbc ^
-           -e ONTOP_ONTOLOGY_FILE=/opt/ontop/input/ontology.ttl ^
-           -e ONTOP_MAPPING_FILE=/opt/ontop/input/ontology.obda ^
-           -e ONTOP_PROPERTIES_FILE=/opt/ontop/input/ontology.docker.properties ^
-           -p 8080:8080 ^
-           ontop/ontop
+docker run --rm -v .\input:/opt/ontop/input -v .\jdbc:/opt/ontop/jdbc -e ONTOP_ONTOLOGY_FILE=/opt/ontop/input/ontology.ttl -e ONTOP_MAPPING_FILE=/opt/ontop/input/ontology.obda -e ONTOP_PROPERTIES_FILE=/opt/ontop/input/ontology.docker.properties -p 8080:8080 ontop/ontop
