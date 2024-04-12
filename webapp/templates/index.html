@@ -3,10 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>World data</title>
-</head>
-<body>
     <style>
-
         body {
             background-color: #f0f7fc; /* Light blue background */
             font-family: Arial, sans-serif;
@@ -41,16 +38,19 @@
             border-radius: 4px;
             border: 1px solid #ccc;
             resize: vertical;
+            margin-bottom: 10px;
         }
         
         button {
-            padding: 10px 20px;
+            width: calc(100% - 22px); /* Set width to fill the container minus padding */
+            padding: 10px;
             font-size: 16px;
             border-radius: 4px;
             border: none;
             background-color: #007bff; /* Blue button */
             color: #fff;
             cursor: pointer;
+            margin-bottom: 10px;
         }
         
         button:hover {
@@ -84,30 +84,38 @@
                 padding: 10px;
             }
         }
-        
-        </style>
+    </style>
+</head>
+<body>
     <h1>World data explorer</h1>
-    <form action="/query" method="post">
-        <textarea name="query" rows="8" placeholder="Enter your SPARQL query here...">PREFIX ex: <http://example.org/ontology/>
-PREFIX owl: <http://www.w3.org/2002/07/owl#>
-PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
-PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    
+    <div class="container">
+        <!-- Predefined query buttons -->
+        <form action="/query" method="post">
+            <button type="submit" name="query" value="SELECT ?country ?population WHERE {?country ex:hasPopulation ?population .} LIMIT 10">
+                List countries and populations
+            </button>
+            <button type="submit" name="query" value="SELECT ?country ?capital WHERE {?country ex:hasCapital ?capital .} LIMIT 10">
+                List countries and capitals
+            </button>
+            <button type="submit" name="query" value="SELECT ?country ?gdp WHERE {?country ex:hasGDP ?gdp .} ORDER BY DESC(?gdp) LIMIT 10">
+                List countries by GDP (highest first)
+            </button>
+            <button type="submit" name="query" value="SELECT ?country (COUNT(?city) AS ?numCities) WHERE {?country ex:containsCity ?city .} GROUP BY ?country ORDER BY DESC(?numCities) LIMIT 10">
+                List countries and number of cities
+            </button>
+            <button type="submit" name="query" value="SELECT ?country ?happinessScore WHERE {?country ex:hasHappinessScore ?happinessScore .} ORDER BY DESC(?happinessScore) LIMIT 10">
+                List countries by happiness score (highest first)
+            </button>
+        </form>
+        
+        <!-- SPARQL query input field -->
+        <form action="/query" method="post">
+            <textarea name="query" rows="8" placeholder="Enter custom SPARQL Query."></textarea>
+            <br>
+            <button type="submit">Post query</button>
+        </form>
+    </div>
 
-SELECT ?sub ?pred ?obj WHERE
-{
-    ?sub ?pred ?obj .
-}
-
-LIMIT 10
-        </textarea>
-        <br>
-        <button type="submit">Post query</button>
-    </form>
-
-    {% if response_table %}
-        <h2>Query response:</h2>
-        {{ response_table | safe }}
-    {% endif %}
 </body>
 </html>

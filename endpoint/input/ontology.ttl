@@ -60,12 +60,12 @@ ex:hasGovernment rdf:type owl:ObjectProperty ;
 
 
 ###  http://example.org/ontology/hasHappinessScore
-ex:hasHappinessScore rdf:type owl:ObjectProperty ;
+ex:hasHappinessScore rdf:type owl:DatatypeProperty ;
                      rdfs:domain ex:Country .
 
 
 ###  http://example.org/ontology/hasLifeExpectancy
-ex:hasLifeExpectancy rdf:type owl:ObjectProperty ;
+ex:hasLifeExpectancy rdf:type owl:DatatypeProperty ;
                      rdfs:domain ex:Country .
 
 
