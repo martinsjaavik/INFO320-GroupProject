@@ -1,32 +1,30 @@
 from flask import Flask, render_template, request
-import requests
-
+import requests, json, urllib.parse
 app = Flask(__name__)
 
-# Route to render the HTML page with the form
 @app.route('/')
 def index():
-    return render_template('index.html', response_table=None)
+    return render_template('index.html')
 
-# Route to handle the form submission
+# Query
 @app.route('/query', methods=['POST'])
 def query():
-    # Get the SPARQL query from the form
-    sparql_query = request.form['query']
+    query = request.form['query']
 
-    # Make a POST request to the SPARQL endpoint
-    endpoint_url = 'http://localhost:8080/sparql'
+    # POST request to SPARQL endpoint
+    endpoint = 'http://localhost:8080/sparql'
     headers = {'Content-Type': 'application/x-www-form-urlencoded'}
-    response = requests.post(endpoint_url, data={'query': sparql_query}, headers=headers)
+    response = requests.post(endpoint, data={'query': query}, headers=headers)
 
-    # Parse the JSON response
-    response_json = response.json()
+    if response.status_code != 200:
+        return render_template('index.html', response_table='<p>Error</p>')
 
-    # Extract the data from the response for the table
-    if 'results' in response_json and 'bindings' in response_json['results']:
-        bindings = response_json['results']['bindings']
+    response = response.json()
+
+    # Data to make table with
+    if 'results' in response and 'bindings' in response['results']:
+        bindings = response['results']['bindings']
         if bindings:
-            # Get all unique keys (field names) from the first binding
             field_names = list(bindings[0].keys())
         else:
             field_names = []
@@ -38,10 +36,7 @@ def query():
             table_data.append(row)
 
         response_table = build_table(field_names, table_data)
-    else:
-        response_table = '<p>No data found</p>'
 
-    # Render the HTML page with the response table
     return render_template('index.html', response_table=response_table)
 
 def build_table(field_names, data):
@@ -53,7 +48,14 @@ def build_table(field_names, data):
     for row in data:
         table_html += '<tr>'
         for value in row:
-            table_html += '<td>{}</td>'.format(value)
+            if value.startswith('http'):
+                # Removes URL, only retains name
+                decoded_value = urllib.parse.unquote(value)
+                display_value = decoded_value.rsplit('/', 1)[-1]
+            else:
+                display_value = value 
+
+            table_html += '<td>{}</td>'.format(display_value)
         table_html += '</tr>'
     
     table_html += '</table>'
