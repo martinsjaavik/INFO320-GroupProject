@@ -12,11 +12,11 @@ schema:		http://schema.org/
 
 [MappingDeclaration] @collection [[
 mappingId	country-obesity
-target		ex:{COUNTRY} ex:ObesityRate ex:{BOTHSEXES} ; ex:MaleObesityRate ex:{MALE} ; ex:FemaleObesityRate ex:{FEMALE} . 
+target		ex:{COUNTRY} ex:ObesityRate {BOTHSEXES}^^xsd:integer ; ex:MaleObesityRate {MALE}^^xsd:integer ; ex:FemaleObesityRate {FEMALE}^^xsd:integer . 
 source		select country, bothsexes, male, female from obesity
 
 mappingId	country-gdp
-target		ex:{COUNTRY} ex:hasGDP ex:{GDP} . 
+target		ex:{COUNTRY} ex:hasGDP {GDP}^^xsd:integer . 
 source		select country, gdp from gdp
 
 mappingId	country-lifeexpectancy

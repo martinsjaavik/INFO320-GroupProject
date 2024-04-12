@@ -22,21 +22,6 @@ ex:Code rdf:type owl:ObjectProperty ;
         rdfs:domain ex:Country .
 
 
-###  http://example.org/ontology/FemaleObesityRate
-ex:FemaleObesityRate rdf:type owl:ObjectProperty ;
-                     rdfs:domain ex:Country .
-
-
-###  http://example.org/ontology/MaleObesityRate
-ex:MaleObesityRate rdf:type owl:ObjectProperty ;
-                   rdfs:domain ex:Country .
-
-
-###  http://example.org/ontology/ObesityRate
-ex:ObesityRate rdf:type owl:ObjectProperty ;
-               rdfs:domain ex:Country .
-
-
 ###  http://example.org/ontology/belongsToContinent
 ex:belongsToContinent rdf:type owl:ObjectProperty ;
                       owl:inverseOf ex:hasCountry ;
@@ -68,11 +53,6 @@ ex:hasCountry rdf:type owl:ObjectProperty ;
               rdfs:domain ex:Continent .
 
 
-###  http://example.org/ontology/hasGDP
-ex:hasGDP rdf:type owl:ObjectProperty ;
-          rdfs:domain ex:Country .
-
-
 ###  http://example.org/ontology/hasGovernment
 ex:hasGovernment rdf:type owl:ObjectProperty ;
                  rdfs:domain ex:Country ;
@@ -93,6 +73,34 @@ ex:hasLifeExpectancy rdf:type owl:ObjectProperty ;
 ex:locatedIn rdf:type owl:ObjectProperty ;
              rdfs:domain ex:CapitalCity ;
              rdfs:range ex:Country .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://example.org/ontology/FemaleObesityRate
+ex:FemaleObesityRate rdf:type owl:DatatypeProperty ;
+                     rdfs:domain ex:Country ;
+                     rdfs:range xsd:integer .
+
+
+###  http://example.org/ontology/MaleObesityRate
+ex:MaleObesityRate rdf:type owl:DatatypeProperty ;
+                   rdfs:domain ex:Country ;
+                   rdfs:range xsd:integer .
+
+
+###  http://example.org/ontology/ObesityRate
+ex:ObesityRate rdf:type owl:DatatypeProperty ;
+               rdfs:domain ex:Country ;
+               rdfs:range xsd:integer .
+
+
+###  http://example.org/ontology/hasGDP
+ex:hasGDP rdf:type owl:DatatypeProperty ;
+          rdfs:domain ex:Country ;
+          rdfs:range xsd:integer .
 
 
 #################################################################
