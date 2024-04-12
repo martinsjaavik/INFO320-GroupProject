@@ -3,7 +3,7 @@ from rdflib.plugins.sparql import prepareQuery
 
 # Load your ontology file into a RDFLib Graph
 g = Graph()
-g.parse("ontology-materialized.ttl", format="ttl")  # Replace with the actual path to your ontology file and format
+g.parse("endpoint/input/ontology-materialized.ttl", format="ttl")  # Replace with the actual path to your ontology file and format
 
 # Define your SPARQL query
 query = """
@@ -24,7 +24,7 @@ SELECT ?country ?o WHERE {
         ?country ex:ObesityRate ?o.
     }
 ORDER BY DESC(?o)
-LIMIT 50
+LIMIT 10
     """ # Adjust your query as per your ontology structure
 
 # Execute the SPARQL query
@@ -33,7 +33,7 @@ results = g.query(query)
 # Process the results
 for row in results:
     print(str(row[0]).split("/")[-1])
-    print(str(row[1]).split("/")[-1])
+    print(str(row[1]))
 
 # Close the graph
 g.close()
