@@ -24,3 +24,34 @@ SELECT ?country ?LifeExpectancy WHERE {
     }
 ORDER BY ASC(?country)
 LIMIT 50
+[QueryItem="Region with highest life expectancy"]
+PREFIX ex: <http://example.org/ontology/>
+
+SELECT ?region ?country ?lifeExpectancy
+WHERE {
+  ?region rdf:type ex:Region .
+  ?country ex:belongsToRegion ?region .
+  ?country ex:hasLifeExpectancy ?lifeExpectancy .
+}
+ORDER BY DESC(?lifeExpectancy)
+LIMIT 10
+[QueryItem="Higher male obesity rate"]
+PREFIX ex: <http://example.org/ontology/>
+
+SELECT ?country ?maleObesityRate ?femaleObesityRate
+WHERE {
+  ?country rdf:type ex:Country .
+  ?country ex:MaleObesityRate ?maleObesityRate .
+  ?country ex:FemaleObesityRate ?femaleObesityRate .
+  FILTER (?maleObesityRate > ?femaleObesityRate)
+}
+[QueryItem="Higher female obesity rate"]
+PREFIX ex: <http://example.org/ontology/>
+
+SELECT ?country ?femaleObesityRate ?maleObesityRate
+WHERE {
+  ?country rdf:type ex:Country .
+  ?country ex:FemaleObesityRate ?femaleObesityRate .
+  ?country ex:MaleObesityRate ?maleObesityRate .
+  FILTER (?femaleObesityRate > ?maleObesityRate)
+}

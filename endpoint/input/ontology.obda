@@ -20,12 +20,12 @@ target		ex:{COUNTRY} ex:hasGDP {GDP}^^xsd:integer .
 source		select country, gdp from gdp
 
 mappingId	country-lifeexpectancy
-target		ex:{COUNTRY} ex:hasLifeExpectancy ex:{"Life expectancy"} . 
+target		ex:{COUNTRY} ex:hasLifeExpectancy {"Life expectancy"}^^xsd:integer . 
 source		SELECT * FROM LIFEEXPECTANCY;
 
 mappingId	continent-data
 target		ex:{CONTINENT} a ex:Continent ; ex:hasCountry ex:{COUNTRYTERRITORY} . 
-source		SELECT CCA3, countryterritory, capital, continent FROM countrydata;
+source		SELECT continent, countryterritory FROM countrydata;
 
 mappingId	country-data
 target		ex:{COUNTRYTERRITORY} a ex:Country ; ex:belongsToContinent ex:{CONTINENT} ; ex:hasCapital ex:{CAPITAL} ; ex:Code ex:{CCA3} . 
@@ -40,7 +40,7 @@ target		ex:{country} ex:belongsToRegion ex:{region} .
 source		SELECT country, region FROM happiness
 
 mappingId	country-happiness
-target		ex:{country} ex:hasHappinessScore ex:{"Happiness Score"} . 
+target		ex:{country} ex:hasHappinessScore {"Happiness Score"}^^xsd:integer . 
 source		select country, "Happiness Score" from HAPPINESS
 
 mappingId	region-data
