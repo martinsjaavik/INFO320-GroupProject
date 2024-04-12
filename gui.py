@@ -120,7 +120,7 @@ class App(customtkinter.CTk):
         new_window.title("This is a new window!")
         new_window.geometry("600x400")
         new_window.resizable(False, True) # Width, Height
-        new_window.attributes('-topmost', True)
+        #new_window.attributes('-topmost', True)
         
 
         value = [["Africa",2,3,4,5],
