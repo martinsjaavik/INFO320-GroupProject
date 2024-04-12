@@ -1,29 +1,12 @@
 [QueryItem="All triples"]
-SELECT ?s ?p ?o WHERE
-{
-	?s ?p ?o .
+PREFIX ex: <http://example.org/ontology/>
+
+SELECT ?s ?p ?o
+WHERE {
+    ?s ?p ?o .
 }
-[QueryItem="Obesity rate"]
-PREFIX ex: <http://example.org/ontology/>
 
-PREFIX schema: <http://schema.org/>
-
-SELECT ?country ?o WHERE {
-        ?country ex:ObesityRate ?o.
-    }
-ORDER BY DESC(?o)
-LIMIT 50
-[QueryItem="Life expectancy"]
-PREFIX ex: <http://example.org/ontology/>
-
-PREFIX schema: <http://schema.org/>
-
-SELECT ?country ?LifeExpectancy WHERE {
-        ?country ex:belongsToContinent ex:Europe;
-		ex:hasLifeExpectancy ?LifeExpectancy.
-    }
-ORDER BY ASC(?country)
-LIMIT 50
+LIMIT 10
 [QueryItem="Region with highest life expectancy"]
 PREFIX ex: <http://example.org/ontology/>
 
@@ -55,3 +38,31 @@ WHERE {
   ?country ex:MaleObesityRate ?maleObesityRate .
   FILTER (?femaleObesityRate > ?maleObesityRate)
 }
+[QueryItem="Corrolation between happiness and obesity"]
+PREFIX ex: <http://example.org/ontology/>
+
+SELECT ?country ?happinessScore ?obesityRate
+WHERE {
+  ?country ?p ex:Country .
+  ?country ?p ?countryName .
+  
+  OPTIONAL { ?country ex:hasHappinessScore ?happinessScore }
+  
+  OPTIONAL { ?country ex:ObesityRate ?obesityRate }
+  
+  FILTER (bound(?happinessScore))
+  FILTER (bound(?obesityRate))
+}
+ORDER BY DESC(?happinessScore)
+[QueryItem="Average happines score by region"]
+PREFIX ex: <http://example.org/ontology/>
+
+SELECT ?region (AVG(?happinessScore) AS ?avgHappiness)
+WHERE {
+  ?country rdf:type ex:Country .
+  ?country ex:hasHappinessScore ?happinessScore .
+  ?country ex:belongsToRegion ?region .
+  ?region rdf:type ex:Region .
+}
+GROUP BY ?region
+ORDER BY DESC(?avgHappiness)

@@ -59,16 +59,6 @@ ex:hasGovernment rdf:type owl:ObjectProperty ;
                  rdfs:range ex:Government .
 
 
-###  http://example.org/ontology/hasHappinessScore
-ex:hasHappinessScore rdf:type owl:DatatypeProperty ;
-                     rdfs:domain ex:Country .
-
-
-###  http://example.org/ontology/hasLifeExpectancy
-ex:hasLifeExpectancy rdf:type owl:DatatypeProperty ;
-                     rdfs:domain ex:Country .
-
-
 ###  http://example.org/ontology/locatedIn
 ex:locatedIn rdf:type owl:ObjectProperty ;
              rdfs:domain ex:CapitalCity ;
@@ -101,6 +91,16 @@ ex:ObesityRate rdf:type owl:DatatypeProperty ;
 ex:hasGDP rdf:type owl:DatatypeProperty ;
           rdfs:domain ex:Country ;
           rdfs:range xsd:integer .
+
+
+###  http://example.org/ontology/hasHappinessScore
+ex:hasHappinessScore rdf:type owl:DatatypeProperty ;
+                     rdfs:domain ex:Country .
+
+
+###  http://example.org/ontology/hasLifeExpectancy
+ex:hasLifeExpectancy rdf:type owl:DatatypeProperty ;
+                     rdfs:domain ex:Country .
 
 
 #################################################################
