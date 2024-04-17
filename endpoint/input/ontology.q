@@ -66,3 +66,29 @@ WHERE {
 }
 GROUP BY ?region
 ORDER BY DESC(?avgHappiness)
+[QueryItem="European countries"]
+PREFIX ex: <http://example.org/ontology/>
+
+SELECT ?s WHERE {
+?s ?p ex:OceaniaCountry
+}
+[QueryItem="Democracies"]
+PREFIX ex: <http://example.org/ontology/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?country ?government WHERE {
+  ?country rdf:type ex:Country .
+  ?country ex:hasGovernment ?government .
+  ?government rdf:type ex:Democracy .
+}
+[QueryItem="Dictatorships"]
+PREFIX ex: <http://example.org/ontology/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?country ?government WHERE {
+  ?country rdf:type ex:Country .
+  ?country ex:hasGovernment ?government .
+  ?government rdf:type ex:Dictatorship .
+}

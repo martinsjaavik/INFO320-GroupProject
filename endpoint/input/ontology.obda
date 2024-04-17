@@ -28,7 +28,7 @@ target		ex:{CONTINENT} a ex:Continent ; ex:hasCountry ex:{COUNTRYTERRITORY} .
 source		SELECT continent, countryterritory FROM countrydata;
 
 mappingId	country-data
-target		ex:{COUNTRYTERRITORY} a ex:Country ; ex:belongsToContinent ex:{CONTINENT} ; ex:hasCapital ex:{CAPITAL} ; ex:Code ex:{CCA3} . 
+target		ex:{COUNTRYTERRITORY} a ex:Country ; ex:hasCapital ex:{CAPITAL} ; ex:Code ex:{CCA3} . 
 source		SELECT CCA3, countryterritory, capital, continent FROM countrydata;
 
 mappingId	country-capital
@@ -47,8 +47,59 @@ mappingId	region-data
 target		ex:{Region} a ex:Region ; ex:containsCountry ex:{Country} . 
 source		select country, region from happiness
 
-mappingId	country-government
-target		ex:{country} ex:hasGovernment ex:{type} . 
-source		select * from democracy
+mappingId	european-country
+target		ex:{countryterritory} a ex:EuropeanCountry ; ex:belongsToContinent ex:{Continent} . 
+source		SELECT Countryterritory, Continent FROM countrydata
+			WHERE Continent = 'Europe'
+
+mappingId	african-country
+target		ex:{countryterritory} a ex:AfricanCountry ; ex:belongsToContinent ex:{Continent} . 
+source		SELECT Countryterritory, Continent FROM countrydata
+			WHERE Continent = 'Africa'
+
+mappingId	northamerican-country
+target		ex:{countryterritory} a ex:NorthAmericanCountry ; ex:belongsToContinent ex:{Continent} . 
+source		SELECT Countryterritory, Continent FROM countrydata
+			WHERE Continent = 'North America'
+
+mappingId	southamerican-country
+target		ex:{countryterritory} a ex:SouthAmericanCountry ; ex:belongsToContinent ex:{Continent} . 
+source		SELECT Countryterritory, Continent FROM countrydata
+			WHERE Continent = 'South America'
+
+mappingId	oceania-country
+target		ex:{countryterritory} a ex:OceaniaCountry ; ex:belongsToContinent ex:{Continent} . 
+source		SELECT Countryterritory, Continent FROM countrydata
+			WHERE Continent = 'Oceania'
+
+mappingId	presidential-democracy
+target		ex:{Country} ex:hasGovernment ex:PresidentialDemocracy . ex:PresidentialDemocracy a ex:Democracy . 
+source		select country, type from democracy
+			where type = 'PresidentialDemocracy'
+
+mappingId	semipresidential-democracy
+target		ex:{Country} ex:hasGovernment ex:SemiPresidentialDemocracy . ex:SemiPresidentialDemocracy a ex:Democracy . 
+source		select country, type from democracy
+			where type = 'SemiPresidentialDemocracy'
+
+mappingId	parliamentary-democracy
+target		ex:{Country} ex:hasGovernment ex:ParliamentaryDemocracy . ex:ParliamentaryDemocracy a ex:Democracy . 
+source		select country, type from democracy
+			where type = 'ParliamentaryDemocracy'
+
+mappingId	civilian-dictatorship
+target		ex:{Country} ex:hasGovernment ex:CivilianDictatorship . ex:CivilianDictatorship a ex:Dictatorship . 
+source		select country, type from democracy
+			where type = 'CivilianDictatorship'
+
+mappingId	military-dictatorship
+target		ex:{Country} ex:hasGovernment ex:MilitaryDictatorship . ex:MilitaryDictatorship a ex:Dictatorship . 
+source		select country, type from democracy
+			where type = 'MilitaryDictatorship'
+
+mappingId	royal-dictatorship
+target		ex:{Country} ex:hasGovernment ex:RoyalDictatorship . ex:RoyalDictatorship a ex:Dictatorship . 
+source		select country, type from democracy
+			where type = 'RoyalDictatorship'
 ]]
 
