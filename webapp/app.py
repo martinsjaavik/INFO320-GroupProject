@@ -1,10 +1,18 @@
-from flask import Flask, render_template, request
-import requests, json, urllib.parse
+from flask import Flask, render_template, request, jsonify
+import requests
+import urllib.parse
+import webbrowser
+
 app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    # Example data for demonstration
+    field_names = ['Name', 'URL']
+    data = [['Google Maps', 'https://www.google.com/maps'], ['OpenStreetMap', 'https://www.openstreetmap.org']]
+    
+    table_html = build_table(field_names, data)
+    return render_template('index.html', response_table=table_html)
 
 # Query
 @app.route('/query', methods=['POST'])
@@ -55,11 +63,24 @@ def build_table(field_names, data):
             else:
                 display_value = value 
 
-            table_html += '<td onclick="showPrompt()">{}</td>'.format(display_value)
+            table_html += '<td onclick="gui(\'{}\')">{}</td>'.format(display_value, display_value)
         table_html += '</tr>'
     
     table_html += '</table>'
     return table_html
 
-if __name__ == '__main__':
+@app.route('/gui', methods=['POST'])
+def gui():
+    # Extract the value from the JSON request data
+    data = request.get_json()
+    value = data.get('value')
+
+    # Open the map based on the clicked value
+    gui_func(value)
+    return 'Map opened successfully!'
+
+def gui_func(value):
+    webbrowser.open_new_tab(f'https://www.openstreetmap.org/search?query={value}')
+
+if __name__ == "__main__":
     app.run(debug=True)

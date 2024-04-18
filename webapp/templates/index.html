@@ -199,5 +199,29 @@ LIMIT 10
             }
         }
     </script>
+    <script>
+        function gui(value) {
+    fetch('/gui', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ value: value })
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Failed to open GUI');
+        }
+        return response.text();
+    })
+    .then(data => {
+        console.log(data);  // Log the response (e.g., success message)
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+}
+
+    </script>
 </body>
 </html>
