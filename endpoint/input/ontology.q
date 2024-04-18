@@ -74,21 +74,43 @@ SELECT ?s WHERE {
 }
 [QueryItem="Democracies"]
 PREFIX ex: <http://example.org/ontology/>
-PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 
-SELECT ?country ?government WHERE {
+SELECT ?country
+WHERE {
   ?country rdf:type ex:Country .
-  ?country ex:hasGovernment ?government .
-  ?government rdf:type ex:Democracy .
+  ?country a ex:Dictatorship .
 }
 [QueryItem="Dictatorships"]
 PREFIX ex: <http://example.org/ontology/>
-PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 
-SELECT ?country ?government WHERE {
+SELECT ?country ?gov WHERE {
   ?country rdf:type ex:Country .
-  ?country ex:hasGovernment ?government .
-  ?government rdf:type ex:Dictatorship .
+  ?country a ex:Dictatorship .
+}
+[QueryItem="Continents"]
+PREFIX ex: <http://example.org/ontology/>
+
+SELECT ?country ?continent WHERE {
+  ?country rdf:type ex:Country .
+  ?country ex:belongsToContinent ?continent .
+  ?continent rdf:type ex:Europe .
+}
+[QueryItem="Compare Norway and Sweden"]
+PREFIX ex: <http://example.org/ontology/>
+
+SELECT ?country ?capital ?obesity ?happiness
+WHERE {
+  {
+    ex:Norway ex:hasCapital ?capital ;
+              ex:hasHappinessScore ?happiness ;
+              ex:ObesityRate ?obesity .
+    BIND("Norway" as ?country)
+  }
+  UNION
+  {
+    ex:Sweden ex:hasCapital ?capital ;
+              ex:hasHappinessScore ?happiness ;
+              ex:ObesityRate ?obesity .
+    BIND("Sweden" as ?country)
+  }
 }

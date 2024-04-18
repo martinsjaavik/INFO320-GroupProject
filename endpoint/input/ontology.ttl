@@ -52,11 +52,6 @@ ex:hasCountry rdf:type owl:ObjectProperty ;
               rdfs:domain ex:Continent .
 
 
-###  http://example.org/ontology/hasGovernment
-ex:hasGovernment rdf:type owl:ObjectProperty ;
-                 rdfs:domain ex:Country .
-
-
 ###  http://example.org/ontology/locatedIn
 ex:locatedIn rdf:type owl:ObjectProperty ;
              rdfs:domain ex:CapitalCity ;

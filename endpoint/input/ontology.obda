@@ -23,10 +23,6 @@ mappingId	country-lifeexpectancy
 target		ex:{COUNTRY} ex:hasLifeExpectancy {"Life expectancy"}^^xsd:integer . 
 source		SELECT * FROM LIFEEXPECTANCY;
 
-mappingId	continent-data
-target		ex:{CONTINENT} a ex:Continent ; ex:hasCountry ex:{COUNTRYTERRITORY} . 
-source		SELECT continent, countryterritory FROM countrydata;
-
 mappingId	country-data
 target		ex:{COUNTRYTERRITORY} a ex:Country ; ex:hasCapital ex:{CAPITAL} ; ex:Code ex:{CCA3} . 
 source		SELECT CCA3, countryterritory, capital, continent FROM countrydata;
@@ -73,33 +69,63 @@ source		SELECT Countryterritory, Continent FROM countrydata
 			WHERE Continent = 'Oceania'
 
 mappingId	presidential-democracy
-target		ex:{Country} ex:hasGovernment ex:PresidentialDemocracy . ex:PresidentialDemocracy a ex:Democracy . 
+target		ex:{Country} a ex:PresidentialDemocracy . 
 source		select country, type from democracy
 			where type = 'PresidentialDemocracy'
 
 mappingId	semipresidential-democracy
-target		ex:{Country} ex:hasGovernment ex:SemiPresidentialDemocracy . ex:SemiPresidentialDemocracy a ex:Democracy . 
+target		ex:{Country} a ex:SemiPresidentialDemocracy . 
 source		select country, type from democracy
 			where type = 'SemiPresidentialDemocracy'
 
 mappingId	parliamentary-democracy
-target		ex:{Country} ex:hasGovernment ex:ParliamentaryDemocracy . ex:ParliamentaryDemocracy a ex:Democracy . 
+target		ex:{Country} a ex:ParliamentaryDemocracy . 
 source		select country, type from democracy
 			where type = 'ParliamentaryDemocracy'
 
 mappingId	civilian-dictatorship
-target		ex:{Country} ex:hasGovernment ex:CivilianDictatorship . ex:CivilianDictatorship a ex:Dictatorship . 
+target		ex:{Country} a ex:CivilianDictatorship . 
 source		select country, type from democracy
 			where type = 'CivilianDictatorship'
 
 mappingId	military-dictatorship
-target		ex:{Country} ex:hasGovernment ex:MilitaryDictatorship . ex:MilitaryDictatorship a ex:Dictatorship . 
+target		ex:{Country} a ex:MilitaryDictatorship . 
 source		select country, type from democracy
 			where type = 'MilitaryDictatorship'
 
 mappingId	royal-dictatorship
-target		ex:{Country} ex:hasGovernment ex:RoyalDictatorship . ex:RoyalDictatorship a ex:Dictatorship . 
+target		ex:{Country} a ex:RoyalDictatorship . 
 source		select country, type from democracy
 			where type = 'RoyalDictatorship'
+
+mappingId	asia-continent
+target		ex:{continent} a ex:Asia . ex:{countryterritory} ex:belongsToContinent ex:Asia . 
+source		select continent, countryterritory from countrydata
+			where continent = 'Asia'
+
+mappingId	europe-continent
+target		ex:{continent} a ex:Europe . ex:{countryterritory} ex:belongsToContinent ex:Europe . 
+source		select continent, countryterritory from countrydata
+			where continent = 'Europe'
+
+mappingId	northamerica-continent
+target		ex:{continent} a ex:NorthAmerica . ex:{countryterritory} ex:belongsToContinent ex:NorthAmerica . 
+source		select continent, countryterritory from countrydata
+			where continent = 'NorthAmerica'
+
+mappingId	africa-continent
+target		ex:{continent} a ex:Africa . ex:{countryterritory} ex:belongsToContinent ex:Africa . 
+source		select continent, countryterritory from countrydata
+			where continent = 'Africa'
+
+mappingId	southamerica-continent
+target		ex:{continent} a ex:SouthAmerica . ex:{countryterritory} ex:belongsToContinent ex:SouthAmerica . 
+source		select continent, countryterritory from countrydata
+			where continent = 'SouthAmerica'
+
+mappingId	oceania-continent
+target		ex:{continent} a ex:Oceania . ex:{countryterritory} ex:belongsToContinent ex:Oceania . 
+source		select continent, countryterritory from countrydata
+			where continent = 'Oceania'
 ]]
 
