@@ -7,12 +7,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    # Example data for demonstration
-    field_names = ['Name', 'URL']
-    data = [['Google Maps', 'https://www.google.com/maps'], ['OpenStreetMap', 'https://www.openstreetmap.org']]
-    
-    table_html = build_table(field_names, data)
-    return render_template('index.html', response_table=table_html)
+    return render_template('index.html')
 
 # Query
 @app.route('/query', methods=['POST'])
