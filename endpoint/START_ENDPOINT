@@ -1,4 +1,4 @@
-How to run: copy the right command, start a terminal in this folder (endpoint) and run. http://localhost:8080
+How to run: copy the right command, start a terminal in this folder (endpoint) and run. Make sure the H2 database is running and Docker is running
 
 
 MAC OSX

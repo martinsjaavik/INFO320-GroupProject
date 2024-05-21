@@ -1,12 +1,12 @@
 [QueryItem="All triples"]
 PREFIX ex: <http://example.org/ontology/>
 
-SELECT ?s ?p ?o
+SELECT ?s ?c
 WHERE {
-    ?s ?p ?o .
+    ?s rdf:type ex:Country .
+    ?s ex:hasCapital ?c
+    
 }
-
-LIMIT 10
 [QueryItem="Region with highest life expectancy"]
 PREFIX ex: <http://example.org/ontology/>
 
@@ -46,10 +46,6 @@ WHERE {
   ?country ?p ex:Country .
   ?country ?p ?countryName .
   
-  OPTIONAL { ?country ex:hasHappinessScore ?happinessScore }
-  
-  OPTIONAL { ?country ex:ObesityRate ?obesityRate }
-  
   FILTER (bound(?happinessScore))
   FILTER (bound(?obesityRate))
 }
@@ -70,7 +66,7 @@ ORDER BY DESC(?avgHappiness)
 PREFIX ex: <http://example.org/ontology/>
 
 SELECT ?s WHERE {
-?s ?p ex:OceaniaCountry
+?s ?p ex:EuropeanCountry
 }
 [QueryItem="Democracies"]
 PREFIX ex: <http://example.org/ontology/>
@@ -113,4 +109,14 @@ WHERE {
               ex:ObesityRate ?obesity .
     BIND("Sweden" as ?country)
   }
+}
+[QueryItem="Obesity & life expectancy"]
+PREFIX ex: <http://example.org/ontology/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+
+SELECT ?country ?obesityRate ?lifeExpectancy
+WHERE {
+  ?country rdf:type ex:Country .
+  ?country ex:ObesityRate ?obesityRate .
+  ?country ex:hasLifeExpectancy ?lifeExpectancy .
 }

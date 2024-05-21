@@ -12,120 +12,90 @@ schema:		http://schema.org/
 
 [MappingDeclaration] @collection [[
 mappingId	country-obesity
-target		ex:{COUNTRY} ex:ObesityRate {BOTHSEXES}^^xsd:integer ; ex:MaleObesityRate {MALE}^^xsd:integer ; ex:FemaleObesityRate {FEMALE}^^xsd:integer . 
+target		ex:country/{COUNTRY} ex:ObesityRate {BOTHSEXES}^^xsd:integer ; ex:MaleObesityRate {MALE}^^xsd:integer ; ex:FemaleObesityRate {FEMALE}^^xsd:integer . 
 source		select country, bothsexes, male, female from obesity
 
 mappingId	country-gdp
-target		ex:{COUNTRY} ex:hasGDP {GDP}^^xsd:integer . 
+target		ex:country/{COUNTRY} ex:hasGDP {GDP}^^xsd:integer . 
 source		select country, gdp from gdp
 
 mappingId	country-lifeexpectancy
-target		ex:{COUNTRY} ex:hasLifeExpectancy {"Life expectancy"}^^xsd:integer . 
+target		ex:country/{COUNTRY} ex:hasLifeExpectancy {"Life expectancy"}^^xsd:integer . 
 source		SELECT * FROM LIFEEXPECTANCY;
 
 mappingId	country-data
-target		ex:{COUNTRYTERRITORY} a ex:Country ; ex:hasCapital ex:{CAPITAL} ; ex:Code ex:{CCA3} . 
+target		ex:country/{COUNTRYTERRITORY} a ex:Country ; ex:hasCapital ex:city/capitalcity/{CAPITAL} ; ex:Code ex:{CCA3} . 
 source		SELECT CCA3, countryterritory, capital, continent FROM countrydata;
 
 mappingId	country-capital
-target		ex:{CAPITAL} a ex:CapitalCity ; ex:locatedIn ex:{countryterritory} . 
+target		ex:city/capitalcity/{CAPITAL} a ex:CapitalCity ; ex:locatedIn ex:country/{countryterritory} . 
 source		SELECT countryterritory, capital from countrydata
 
 mappingId	country-region
-target		ex:{country} ex:belongsToRegion ex:{region} . 
+target		ex:country/{country} ex:belongsToRegion ex:region/{region} . 
 source		SELECT country, region FROM happiness
 
 mappingId	country-happiness
-target		ex:{country} ex:hasHappinessScore {"Happiness Score"}^^xsd:integer . 
+target		ex:country/{country} ex:hasHappinessScore {"Happiness Score"}^^xsd:integer . 
 source		select country, "Happiness Score" from HAPPINESS
 
 mappingId	region-data
-target		ex:{Region} a ex:Region ; ex:containsCountry ex:{Country} . 
+target		ex:region/{Region} a ex:Region ; ex:containsCountry ex:country/{Country} . 
 source		select country, region from happiness
 
 mappingId	european-country
-target		ex:{countryterritory} a ex:EuropeanCountry ; ex:belongsToContinent ex:{Continent} . 
+target		ex:country/{countryterritory} a ex:EuropeanCountry ; ex:belongsToContinent ex:continent/{Continent} . 
 source		SELECT Countryterritory, Continent FROM countrydata
 			WHERE Continent = 'Europe'
 
 mappingId	african-country
-target		ex:{countryterritory} a ex:AfricanCountry ; ex:belongsToContinent ex:{Continent} . 
+target		ex:country/{countryterritory} a ex:AfricanCountry ; ex:belongsToContinent ex:continent/{Continent} . 
 source		SELECT Countryterritory, Continent FROM countrydata
 			WHERE Continent = 'Africa'
 
 mappingId	northamerican-country
-target		ex:{countryterritory} a ex:NorthAmericanCountry ; ex:belongsToContinent ex:{Continent} . 
+target		ex:country/{countryterritory} a ex:NorthAmericanCountry ; ex:belongsToContinent ex:continent/{Continent} . 
 source		SELECT Countryterritory, Continent FROM countrydata
 			WHERE Continent = 'North America'
 
 mappingId	southamerican-country
-target		ex:{countryterritory} a ex:SouthAmericanCountry ; ex:belongsToContinent ex:{Continent} . 
+target		ex:country/{countryterritory} a ex:SouthAmericanCountry ; ex:belongsToContinent ex:continent/{Continent} . 
 source		SELECT Countryterritory, Continent FROM countrydata
 			WHERE Continent = 'South America'
 
 mappingId	oceania-country
-target		ex:{countryterritory} a ex:OceaniaCountry ; ex:belongsToContinent ex:{Continent} . 
+target		ex:country/{countryterritory} a ex:OceaniaCountry ; ex:belongsToContinent ex:continent/{Continent} . 
 source		SELECT Countryterritory, Continent FROM countrydata
 			WHERE Continent = 'Oceania'
 
 mappingId	presidential-democracy
-target		ex:{Country} a ex:PresidentialDemocracy . 
+target		ex:country/{Country} a ex:PresidentialDemocracy . 
 source		select country, type from democracy
 			where type = 'PresidentialDemocracy'
 
 mappingId	semipresidential-democracy
-target		ex:{Country} a ex:SemiPresidentialDemocracy . 
+target		ex:country/{Country} a ex:SemiPresidentialDemocracy . 
 source		select country, type from democracy
 			where type = 'SemiPresidentialDemocracy'
 
 mappingId	parliamentary-democracy
-target		ex:{Country} a ex:ParliamentaryDemocracy . 
+target		ex:country/{Country} a ex:ParliamentaryDemocracy . 
 source		select country, type from democracy
 			where type = 'ParliamentaryDemocracy'
 
 mappingId	civilian-dictatorship
-target		ex:{Country} a ex:CivilianDictatorship . 
+target		ex:country/{Country} a ex:CivilianDictatorship . 
 source		select country, type from democracy
 			where type = 'CivilianDictatorship'
 
 mappingId	military-dictatorship
-target		ex:{Country} a ex:MilitaryDictatorship . 
+target		ex:country/{Country} a ex:MilitaryDictatorship . 
 source		select country, type from democracy
 			where type = 'MilitaryDictatorship'
 
 mappingId	royal-dictatorship
-target		ex:{Country} a ex:RoyalDictatorship . 
+target		ex:country/{Country} a ex:RoyalDictatorship . 
 source		select country, type from democracy
 			where type = 'RoyalDictatorship'
-
-mappingId	asia-continent
-target		ex:{continent} a ex:Asia . ex:{countryterritory} ex:belongsToContinent ex:Asia . 
-source		select continent, countryterritory from countrydata
-			where continent = 'Asia'
-
-mappingId	europe-continent
-target		ex:{continent} a ex:Europe . ex:{countryterritory} ex:belongsToContinent ex:Europe . 
-source		select continent, countryterritory from countrydata
-			where continent = 'Europe'
-
-mappingId	northamerica-continent
-target		ex:{continent} a ex:NorthAmerica . ex:{countryterritory} ex:belongsToContinent ex:NorthAmerica . 
-source		select continent, countryterritory from countrydata
-			where continent = 'NorthAmerica'
-
-mappingId	africa-continent
-target		ex:{continent} a ex:Africa . ex:{countryterritory} ex:belongsToContinent ex:Africa . 
-source		select continent, countryterritory from countrydata
-			where continent = 'Africa'
-
-mappingId	southamerica-continent
-target		ex:{continent} a ex:SouthAmerica . ex:{countryterritory} ex:belongsToContinent ex:SouthAmerica . 
-source		select continent, countryterritory from countrydata
-			where continent = 'SouthAmerica'
-
-mappingId	oceania-continent
-target		ex:{continent} a ex:Oceania . ex:{countryterritory} ex:belongsToContinent ex:Oceania . 
-source		select continent, countryterritory from countrydata
-			where continent = 'Oceania'
 ]]
 
